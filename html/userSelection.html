@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <h1 class="display-4">Recherche des utilisateurs !</h1>
+    <p class="lead">La recherche est effectuée sur ressemblance. Combinaison par ou inclusif.</p>
+    <hr class="my-4">
+    <form action="userList.php" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="name">Nom</label>
+              <input type="text" name ="name" class="form-control" id="name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" name ="email" class="form-control" id="email" >
+          </div>
+        </div>
+          <input type='hidden' name ='from' id='from' value='userSelection.php'>
+          <button type="submit" class="btn btn-primary" id="btnValid" >Confirmer</button>
+    </form>
+    <form action="adminPannel.php" method="POST">
+        <button type="submit" class="btn btn-primary" id="btnExit">Sortir</button>
+    </form>
+</div>
