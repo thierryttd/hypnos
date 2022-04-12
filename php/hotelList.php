@@ -4,6 +4,8 @@ require_once '../html/header.html';
 require_once 'message.php';
 require_once '../model/Hotel.php';
 
+var_dump($_SESSION);
+
 if (isset($_SESSION['connection']) && ( $_SESSION['role'] === 'ADM' || $_SESSION['role'] === 'MNG') ){
   $cssDisabled = "cssDisabled";
   // Select all hotels in DB
