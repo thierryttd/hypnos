@@ -30,6 +30,8 @@ if (isset($_SESSION['connection']) && ( $_SESSION['role'] === 'ADM' || $_SESSION
 }
 
 function responseCheck ($response, $action){
+  var_dump($response);
+  var_dump($action);
   if(isset($response) && !is_array($response)){
     $titre = 'Problème d\'accès à la liste des établissements.';
     $next = '';
