@@ -1,4 +1,5 @@
 <?php
+var_dump($response);
 if (!isset($response) || !isset($_GET['origin'])){
   die();
 }
@@ -12,7 +13,7 @@ echo "</div>";
 static $lineCount = 0;
 $lignCss = '';
 $cssLine = '';
-var_dump($response);
+// var_dump($response);
 foreach ($response as $hotel) {
   $cssLine = "jumbo-line";
   echo "<div class='row align-items-center'>";
