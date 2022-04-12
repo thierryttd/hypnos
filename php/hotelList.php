@@ -4,8 +4,6 @@ require_once '../html/header.html';
 require_once 'message.php';
 require_once '../model/Hotel.php';
 
-// var_dump($_SESSION);
-
 if (isset($_SESSION['connection']) && ( $_SESSION['role'] === 'ADM' || $_SESSION['role'] === 'MNG') ){
   $cssDisabled = "cssDisabled";
   // Select all hotels in DB
@@ -30,8 +28,6 @@ if (isset($_SESSION['connection']) && ( $_SESSION['role'] === 'ADM' || $_SESSION
 }
 
 function responseCheck ($response, $action){
-  // var_dump($response);
-  // var_dump($action);
   if(isset($response) && !is_array($response)){
     $titre = 'Problème d\'accès à la liste des établissements.';
     $next = '';
@@ -40,5 +36,5 @@ function responseCheck ($response, $action){
   }
 }
 
-require_once '../view/hotelLIst.php';
+require_once '../view/hotelList.php';
 require_once '../html/footer.html';
