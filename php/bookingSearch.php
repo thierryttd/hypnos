@@ -45,7 +45,7 @@ $suites = [];
 foreach ($response as $suite) {
     if (!in_array($suite['id'], $keyBooking)){
         if (isset($_SESSION['currentSuite'])){
-            if ($suite['id'] === $_SESSION['currentSuite']){
+            if ($suite['id'] == $_SESSION['currentSuite']){
                 $suites [] = $suite;
                 $action = 'bookingCreate.php';
                 $disabled = '';
