@@ -1,7 +1,7 @@
 <?php
-if (!isset($response) || !isset($_GET['origin'])){
-  die();
-}
+// if (!isset($response) || !isset($_GET['origin'])){
+//   die();
+// }
 echo "<div class='container-fluid jumbo'>";
   echo "<div class='row custom rounded m-2 justify-content-center'>";
       echo "<div class='col mt-3 text-align-center'>";
