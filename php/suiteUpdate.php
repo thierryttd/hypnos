@@ -18,7 +18,6 @@ if (isset($_POST['from']) && ($_POST['from']) === "suiteUpdate.php"){
         $suite->hydrate($_POST);
         $suite->update($pdo, $_POST['suite']);
         $_SESSION['currentSuite'] = $_POST['suite'];
-        // header('Location: '. 'suiteGallery.php?suite=' . $_POST['suite'] );
         header('Location: '. 'suiteGallery.php');
 }else{
     if (isset($_POST['idSuite']) && isset($_POST['hotel'])){

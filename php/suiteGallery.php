@@ -33,9 +33,20 @@ if (isset($_SESSION['connection'])){
                     displayMessage($titre, $message, $next);
                     die();
                 }
-                $source =  '../gallery/IMG_'. time() . $_FILES['monfichier']['name'];
+                // Check file name has suffix
+                $suffixes = explode('.', $_FILES['monfichier']['name'] );
+                var_dump(count($suffixes));
+                if (count($suffixes) < 2){
+                    $titre = "OOPS !";
+                    $next = "";
+                    $message = "Le nom du fichier doit comporter un suffixe.";
+                    displayMessage($titre, $message, $next);
+                    die();
+                }
                 $uploadDir = '../gallery';
-                $filename = $uploadDir . "/IMG_". time();
+                $suffixe = $suffixes[count($suffixes) - 1];
+                // Make file name unique in gallery
+                $filename = $uploadDir . "/IMG_". time() . "." . $suffixe;
                 move_uploaded_file($_FILES['monfichier']['tmp_name'], $filename);
 
                 // Store image gallery to the appropriate suite
