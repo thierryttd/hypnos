@@ -35,7 +35,6 @@ if (isset($_SESSION['connection'])){
                 }
                 // Check file name has suffix
                 $suffixes = explode('.', $_FILES['monfichier']['name'] );
-                var_dump(count($suffixes));
                 if (count($suffixes) < 2){
                     $titre = "OOPS !";
                     $next = "";
@@ -47,8 +46,8 @@ if (isset($_SESSION['connection'])){
                 $suffixe = $suffixes[count($suffixes) - 1];
                 // Make file name unique in gallery
                 $filename = $uploadDir . "/IMG_". time() . "." . $suffixe;
-                move_uploaded_file($_FILES['monfichier']['tmp_name'], $filename);
-
+                $response = move_uploaded_file($_FILES['monfichier']['tmp_name'], $filename);
+                var_dump($response);
                 // Store image gallery to the appropriate suite
                 $gallery = new Gallery();
                 $gallery->setSource($filename);
