@@ -38,6 +38,7 @@
   }
 
 body{
+    font-family: 'Bellefair', serif;
     background-color: var(--custom-bg);
 }
 .bg-light{
@@ -87,4 +88,30 @@ body{
     pointer-events: none;        
     text-decoration: none;
     color: grey;
+}
+#glacier{
+    width: 70;
+    height: 70;
+    background-color: var(--custom-info);
+    border: solid;
+}
+#ice{
+    width: 70;
+    height: 70;
+    background-color: var(--custom-input);
+    border: solid;
+}
+#warmgray{
+    width: 70;
+    height: 70;
+    background-color: var(--custom-title);
+    border: solid;
+    text-align: center;
+    
+}
+#overcast{
+    width: 70;
+    height: 70;
+    background-color: var(--custom-bg);
+    border: solid;
 }
