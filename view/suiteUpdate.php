@@ -35,7 +35,6 @@ if (!isset($suite)){
       <div class="form-group col-md-6">
         <label for="hotel">Hotel</label>
         <?php
-          //   echo "<input type='text' name ='hotel' class='form-control' id='hotel'  value='" . $hotel->getId() ."' disabled>";
           echo "<input type='hidden' name ='hotel' class='form-control' id='hotel'  value='" . $suite->getHotel() . "'>";
           echo "<input type='text' name ='fadehotel' class='form-control' id='fadehotel'  value='" . $suite->getHotel() . "' disabled>";
         ?>
@@ -57,7 +56,6 @@ if (!isset($suite)){
     <button type="submit" class="btn btn-primary" id="btnValid">Modifier</button>
   </form>
   <?php
-  // echo "<div class='form-row'>";
   echo "<form action='suiteDelete.php' method='POST'>";
     echo "<input type='hidden' name ='suiteDelete' class='form-control' id='suiteDelete' value='" . $suite->getId() . " '>";
     echo "<button type='submit' class='btn btn-primary' id='btnDelete'>Supprimer</button>";
@@ -66,5 +64,4 @@ if (!isset($suite)){
     echo "<input type='hidden' name ='hotel' id='hotel' value='" . $suite->getHotel() . " '>";
     echo "<button type='submit' class='btn btn-primary' id='btnSortir'>Sortir</button>";
   echo "</form>";
-  // echo "</div>";
 echo "</div>";

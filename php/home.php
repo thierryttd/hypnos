@@ -2,7 +2,7 @@
 require_once 'sessionManager.php';
 
 $sql = "SELECT source, title, name FROM galleries, suites, hotels WHERE 
-galleries.suite = suites.id AND suites.hotel = hotels.id";
+galleries.suite = suites.id AND suites.hotel = hotels.id LIMIT 12";
 $stmt = $pdo->prepare($sql);
 try {
     $stmt->execute();

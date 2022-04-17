@@ -18,7 +18,7 @@ if ( !(isset($_POST['suiteDelete']) && is_integer(intval($_POST['suiteDelete']))
     die();
 }
 
-// verify that there is no booking to come for the targeted suite to delete
+// verify that there is no upcoming booking for the targeted suite to delete
 $booking = new Booking();
 $response = $booking->findUpcoming($pdo,$_POST['suiteDelete'], date("Y-m-d") );
 if(is_array($response)){
@@ -35,9 +35,11 @@ if(is_array($response)){
     displayMessage($titre, $response, $next);
     die();
 }
+// get source image file name to unlink them after galleries suppressed
+$gallerie = new Gallery();
+$imageFiles = $gallerie->findBySuite($pdo, $_POST['suiteDelete']);
 
 // Delete all  galleries linked to selected suite
-$gallerie = new Gallery();
 $response = $gallerie->deleteBySuite($pdo, $_POST['suiteDelete']);
 if (isset($response)){
     $titre = 'Problème suppression gallerie images.';
@@ -54,10 +56,26 @@ if (isset($response)){
     $next = 'home.php';
     displayMessage($titre, $response, $next);
     die();
-}else{
-    $titre = 'Suppression effectuée.';
+}
+
+// unlink images files 
+$error = 0;
+foreach ($imageFiles as $imageFile){
+    $delete = unlink($imageFile['source']);
+    if(!$delete){
+        $error++;
+    }
+}
+if ($error > 0)  {
+    $titre = 'OOPS !';
     $next = 'home.php';
-    $message = "La suite et ses images ont été supprimées.";
+    $message = "Problème, " . $error . " fichier images n'ont pu être supprimé";
     displayMessage($titre, $message, $next);
     die();
-}
+} 
+
+$titre = 'Suppression effectuée.';
+$next = 'home.php';
+$message = "La suite et ses images ont été supprimées.";
+displayMessage($titre, $message, $next);
+die();

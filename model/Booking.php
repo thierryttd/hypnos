@@ -40,6 +40,27 @@ class Booking
         }
     }
 
+    public function findByUser($pdo, $user_id){
+        // $sql = "SELECT * from bookings WHERE user_id = :user_id";
+        $sql = "SELECT suite_id, begin, end, bill, title, name FROM bookings, suites, hotels WHERE bookings.user_id = :user_id 
+        AND bookings.suite_id = suites.id AND suites.hotel = hotels.id" ;
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id);
+        try {
+            $stmt->execute();
+            $bookings = $stmt->fetchAll();
+            if (!is_bool($bookings)){
+                return $bookings;
+            }else{
+                $response = "Aucune reservation trouvée.";
+                return $response;
+            }
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
+
     public function create($pdo){
         $sql = "INSERT INTO bookings (user_id, suite_id, begin, end, bill) VALUES (?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);

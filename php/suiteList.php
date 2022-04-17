@@ -9,7 +9,6 @@ if(!isset($_POST['hotel'])){
 $disabled = "";
 $action = "";
 if (!isset($_SESSION['connection'])){
-  // header('Location: '. 'userConnect.php');
   $suite = new Suite();
   $suites = $suite->findByHotel($pdo, $_POST['hotel'] );
   $action ="" ;
@@ -22,7 +21,6 @@ if (!isset($_SESSION['connection'])){
   }
 } 
 
-// if (isset($_SESSION['connection']) && ( $_SESSION['role'] === 'ADM' || $_SESSION['role'] === 'MNG') ){
 if (isset($_SESSION['connection']) && $_SESSION['role'] === 'MNG' ){
   // Select all suite depending on selected hotel
   if ($_SESSION['role'] === 'MNG'){
@@ -44,8 +42,6 @@ if (isset($_SESSION['connection']) && $_SESSION['role'] === 'MNG' ){
         $action = 'suiteCreate.php';
         break;
     }
-  // }else{
-  //   header('Location: ' . 'indexsuiteCreate.php');
   }
 
   if(isset($suites) && !is_array($suites)){
@@ -63,7 +59,7 @@ if (isset($_SESSION['connection']) && $_SESSION['role'] === 'MNG' ){
  // Block for list of hotel suites 
  require_once '../view/suiteList.php';
 
-//  Possibility add suites for manager (add condition yet missing)
+//  Possibility add suites for manager 
 
  echo "<form action='" . $action . "' method='GET'>";
       echo "<input type='hidden' name ='hotel' id='hotel' value=" . $_POST['hotel'] . ">";

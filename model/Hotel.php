@@ -62,12 +62,12 @@ class Hotel
         $sql = "INSERT INTO hotels (name, city, zipcode, street, streetnumber, description, manager)".
         " VALUES (?,?,?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(1, htmlspecialchars($this->name));
-        $stmt->bindValue(2, htmlspecialchars($this->city));
+        $stmt->bindValue(1, htmlspecialchars($this->name, ENT_QUOTES));
+        $stmt->bindValue(2, htmlspecialchars($this->city, ENT_QUOTES));
         $stmt->bindValue(3, $this->zipcode);
-        $stmt->bindValue(4, htmlspecialchars($this->street));
+        $stmt->bindValue(4, htmlspecialchars($this->street, ENT_QUOTES));
         $stmt->bindValue(5, $this->streetnumber);
-        $stmt->bindValue(6, htmlspecialchars($this->description));
+        $stmt->bindValue(6, htmlspecialchars($this->description, ENT_QUOTES));
         $stmt->bindValue(7, $this->manager);
         try {
             $stmt->execute();
@@ -83,13 +83,13 @@ class Hotel
         $sql = $sqlSet . $sqlWhere;     
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':name', htmlspecialchars($this->name));
-        $stmt->bindValue(':city', htmlspecialchars($this->city));
-        $stmt->bindValue(':zipcode', htmlspecialchars($this->zipcode));
-        $stmt->bindValue(':street', htmlspecialchars($this->street));
-        $stmt->bindValue(':streetnumber', htmlspecialchars($this->streetnumber));
-        $stmt->bindValue(':description', htmlspecialchars($this->description));
-        $stmt->bindValue(':manager', htmlspecialchars($this->manager));
+        $stmt->bindValue(':name', htmlspecialchars($this->name, ENT_QUOTES));
+        $stmt->bindValue(':city', htmlspecialchars($this->city, ENT_QUOTES));
+        $stmt->bindValue(':zipcode', htmlspecialchars($this->zipcode, ENT_QUOTES));
+        $stmt->bindValue(':street', htmlspecialchars($this->street, ENT_QUOTES));
+        $stmt->bindValue(':streetnumber', htmlspecialchars($this->streetnumber, ENT_QUOTES));
+        $stmt->bindValue(':description', htmlspecialchars($this->description, ENT_QUOTES));
+        $stmt->bindValue(':manager', htmlspecialchars($this->manager, ENT_QUOTES));
         try {
             $stmt->execute();
             return $this;

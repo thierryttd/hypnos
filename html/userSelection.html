@@ -5,16 +5,16 @@
     <form action="userList.php" method="POST">
         <div class="form-row">
           <div class="form-group col-md-6">
-              <label for="name">Nom</label>
+              <label for="name">Nom (Facultatif, chaine partielle autorisée)</label>
               <input type="text" name ="name" class="form-control" id="name">
           </div>
           <div class="form-group col-md-6">
-            <label for="email">Email</label>
+            <label for="email">Email (Facultatif, chaine partielle autorisée)</label>
             <input type="text" name ="email" class="form-control" id="email" >
           </div>
         </div>
           <input type='hidden' name ='from' id='from' value='userSelection.php'>
-          <button type="submit" class="btn btn-primary" id="btnValid" >Confirmer</button>
+          <button type="submit" class="btn btn-primary" id="btnValid" >Rechercher</button>
     </form>
     <form action="adminPannel.php" method="POST">
         <button type="submit" class="btn btn-primary" id="btnExit">Sortir</button>

@@ -3,12 +3,22 @@ require_once 'sessionManager.php';
 require_once '../model/Suite.php';
 require_once '../model/Gallery.php';
 
-if (!isset($_SESSION['currentSuite'])){
+if(isset($_GET['suite']) || isset($_SESSION['currentSuite'])){
+    if (isset($_GET['suite']) && is_numeric($_GET['suite'])){
+        $_SESSION['currentSuite'] = $_GET['suite'];
+    }
+    if (!isset($_SESSION['currentSuite'])){
+        header('Location: '. 'home.php'); 
+    }
+}else{
+    if (isset($_POST['from']) && $_POST['from'] === 'userBookingList.php'){
+        $_SESSION['currentSuite'] = $_POST['idSuite'];
+    }else{
         header('Location: '. 'home.php');
+    }
 }
 
 if (isset($_SESSION['connection'])){
-
     if ($_SESSION['role'] === 'MNG' ){
         if(isset($_FILES['monfichier'])) {
             if (!is_uploaded_file($_FILES['monfichier']['tmp_name'])){
@@ -35,7 +45,7 @@ if (isset($_SESSION['connection'])){
                 }
                 $uploadDir = '../gallery';
                 // Make file name unique in gallery
-                $filename = $uploadDir . "/IMG_". time();
+                $filename = rtrim($uploadDir . "/IMG_". time());
                 $response = move_uploaded_file($_FILES['monfichier']['tmp_name'], $filename);
                 if (!$response){
                     $titre = "OOPS !";
@@ -129,6 +139,15 @@ if (isset($_SESSION['connection'])){
         }
     }
 }else{
+    $suite = new Suite();
+    $response = $suite->findId($pdo, $_SESSION['currentSuite']);
+    if(!is_object($response)){
+        $titre = 'OOOPS !';
+        $message = "PROBLEME LECTURE SUITE.";
+        $next = 'home.php';
+        displayMessage($titre, $message, $next);
+        die();
+    }
     $suite = new Suite();
     $suite->findId($pdo, $_SESSION['currentSuite']);
     $galleries = $suite->findGalleries($pdo, $suite->getId() );

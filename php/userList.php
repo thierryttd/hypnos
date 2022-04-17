@@ -57,10 +57,10 @@ function displayUsers ($response){
         echo "<div class='row align-items-center'>";
             
             echo "<div class='col col-md-2 text-center align-middle'>";  
-                echo "<div class='' id='Ref-" .$lineCount . "'".">". $user['name']."</div>";
+                echo "<div class='d-none d-sm-block' id='Ref-" .$lineCount . "'".">". $user['name']."</div>";
             echo "</div>";
             echo "<div class='col col-md-2 text-center align-middle'>";  
-                echo "<div class='' id='Sta-" .$lineCount . "'".">". $user['firstname']."</div>";
+                echo "<div class='d-none d-sm-block' id='Sta-" .$lineCount . "'".">". $user['firstname']."</div>";
             echo "</div>";
             echo "<div class='col col-md-2 text-center align-middle'>";   
                 echo "<div class='' id='Pri-" .$lineCount . "'".">". $user['email']."</div>";

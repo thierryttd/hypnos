@@ -59,12 +59,12 @@ class User
         $sql = "INSERT INTO users (name, firstname, email, password, role)".
         " VALUES (?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(1, htmlspecialchars($this->name));
-        $stmt->bindValue(2, htmlspecialchars($this->firstname));
-        $stmt->bindValue(3, htmlspecialchars($this->email));
+        $stmt->bindValue(1, htmlspecialchars($this->name, ENT_QUOTES));
+        $stmt->bindValue(2, htmlspecialchars($this->firstname, ENT_QUOTES));
+        $stmt->bindValue(3, htmlspecialchars($this->email, ENT_QUOTES));
         $password = password_hash($this->password, PASSWORD_DEFAULT);
         $stmt->bindValue(4, $password);
-        $stmt->bindValue(5, htmlspecialchars($this->role));
+        $stmt->bindValue(5, htmlspecialchars($this->role, ENT_QUOTES));
         try {
             $stmt->execute();
         }catch (Exception $e){
@@ -95,10 +95,10 @@ class User
         $sql = $sqlSet . $sqlWhere;     
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':name', htmlspecialchars($this->name));
-        $stmt->bindValue(':firstname', htmlspecialchars($this->firstname));
-        $stmt->bindValue(':email', htmlspecialchars($this->email));
-        $stmt->bindValue(':role', htmlspecialchars($this->role));
+        $stmt->bindValue(':name', htmlspecialchars($this->name, ENT_QUOTES));
+        $stmt->bindValue(':firstname', htmlspecialchars($this->firstname, ENT_QUOTES));
+        $stmt->bindValue(':email', htmlspecialchars($this->email, ENT_QUOTES));
+        $stmt->bindValue(':role', htmlspecialchars($this->role, ENT_QUOTES));
         try {
             $stmt->execute();
             return $this;

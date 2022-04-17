@@ -18,6 +18,23 @@ class Gallery
         }
     }
 
+    public function findIn($pdo, $in){
+        $sql = "SELECT * FROM galleries WHERE id in " . $in;
+        $stmt = $pdo->prepare($sql);
+        try {
+            $stmt->execute();
+            $galleries = $stmt->fetchAll();
+            if (!is_bool($galleries)){
+                return $galleries;
+            }else{
+                $response = "Aucune image trouvée.";
+                return $response;
+            }
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
     public function findAll($pdo){
         $sql = "SELECT * FROM galleries";
         $stmt = $pdo->prepare($sql);

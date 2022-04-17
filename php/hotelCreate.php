@@ -30,7 +30,6 @@ if (isset($_POST['email'])){
         $hotel = new Hotel();
         $hotel->hydrate($_POST);
         $hotel->setManager($user->getId());
-        // var_dump($_POST);
         $response = $hotel->create($pdo);
         if(isset($response)){
             $titre = "Problème lors de la création de l'établissement.";

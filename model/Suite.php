@@ -17,7 +17,9 @@ class Suite
         try {
             $stmt->execute();
             $suites = $stmt->fetch();
-            return $this->hydrate($suites);
+            if (!is_bool($suites)){
+                return $this->hydrate($suites);
+            }
         }catch (Exception $e){
             return $e->getMessage();
         }
@@ -80,11 +82,11 @@ class Suite
         $sql = "INSERT INTO suites (title, featured, description, price, linkbooking, hotel)".
         " VALUES (?,?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(1, htmlspecialchars($this->title));
-        $stmt->bindValue(2, htmlspecialchars($this->featured));
-        $stmt->bindValue(3, htmlspecialchars($this->description));
+        $stmt->bindValue(1, htmlspecialchars($this->title, ENT_QUOTES));
+        $stmt->bindValue(2, htmlspecialchars($this->featured, ENT_QUOTES));
+        $stmt->bindValue(3, htmlspecialchars($this->description, ENT_QUOTES));
         $stmt->bindValue(4, $this->price);
-        $stmt->bindValue(5, htmlspecialchars($this->linkbooking));
+        $stmt->bindValue(5, htmlspecialchars($this->linkbooking, ENT_QUOTES));
         $stmt->bindValue(6, $this->hotel);
         try {
             $stmt->execute();
@@ -101,11 +103,11 @@ class Suite
         $sql = $sqlSet . $sqlWhere;     
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':title', htmlspecialchars($this->title));
-        $stmt->bindValue(':featured', htmlspecialchars($this->featured));
-        $stmt->bindValue(':description', htmlspecialchars($this->description));
+        $stmt->bindValue(':title', htmlspecialchars($this->title, ENT_QUOTES));
+        $stmt->bindValue(':featured', htmlspecialchars($this->featured, ENT_QUOTES));
+        $stmt->bindValue(':description', htmlspecialchars($this->description, ENT_QUOTES));
         $stmt->bindValue(':price', $this->price);
-        $stmt->bindValue(':linkbooking', htmlspecialchars($this->linkbooking));
+        $stmt->bindValue(':linkbooking', htmlspecialchars($this->linkbooking, ENT_QUOTES));
         $stmt->bindValue(':hotel', $this->hotel);
         try {
             $stmt->execute();
